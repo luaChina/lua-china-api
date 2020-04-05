@@ -37,7 +37,11 @@ local function split_uri(uri)
             index = index + 1
         end
     end
+<<<<<<< HEAD
     return result
+=======
+    return uris
+>>>>>>> eb1d8d54da190821ed9998177897d2bf0d8b7ea1
 end
 
 local function route_match(route_tree, http_uris)
@@ -81,6 +85,12 @@ end
 
 -- require controller
 local function require_controller(controller, action)
+    if controller == nil then
+        return nil, 'system error, define controller can not empty'
+    end
+    if action == nil then
+        return nil, 'system error, define action can not empty'
+    end
     local controller_path = CONTROLLER_PREFIX .. '.' .. controller
     local required_controller = require(controller_path)
     if type(required_controller) ~= 'table' then
@@ -112,7 +122,11 @@ local function generate_route(root_tree, route_uri, route_info)
     local current_tree = root_tree
     for _, uri in ipairs(sub_uris) do
         local node = current_tree:find_child_with_pattern(uri)
+<<<<<<< HEAD
         if not node then
+=======
+        if node == nil then
+>>>>>>> eb1d8d54da190821ed9998177897d2bf0d8b7ea1
             node = trie:new()
             current_tree:append_child(uri, node)
         end

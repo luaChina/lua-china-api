@@ -6,9 +6,6 @@ local _M = {
 	params = new_tab(0, 1000)
 }
 
-local function parse_uri_params()
-	return ngx.req.get_uri_args()
-end
 
 local function parse_body_params()
 	ngx.req.read_body() -- open read body
@@ -24,7 +21,7 @@ local function parse_body_params()
 end
 
 function _M:capture()
-	self.params = parse_uri_params()
+	self.params = ngx.req.get_uri_args()
 	local body_params = parse_body_params()
 	if body_params then
 		for k,v in pairs(body_params) do
@@ -40,12 +37,15 @@ function _M:capture()
 end
 
 
+<<<<<<< HEAD
 function _M:header(key)
 	local headers = ngx.req.get_headers()
 	return headers[key]
 end
 
 
+=======
+>>>>>>> eb1d8d54da190821ed9998177897d2bf0d8b7ea1
 function _M:all()
 	return self.params
 end

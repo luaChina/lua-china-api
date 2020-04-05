@@ -41,5 +41,8 @@ function _M:find_child_with_pattern(key)
     return self.children[key]
 end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> eb1d8d54da190821ed9998177897d2bf0d8b7ea1
 return _M
