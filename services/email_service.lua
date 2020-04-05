@@ -1,6 +1,8 @@
 local config = require("config.app")
 local http = require('lib.http')
 local cjson = require('cjson')
+local helpers = require("lib.helpers")
+local urlencode = helpers.urlencode
 
 local _M = {}
 

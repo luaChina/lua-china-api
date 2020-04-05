@@ -4,6 +4,18 @@ local cjson = require("cjson.safe")
 local _M = {}
 
 
+local function urlencode(url)
+    if url == nil then
+        return
+    end
+    url = string.gsub(url, "\n", "\r\n")
+    url = string.gsub(url, "([^%w ])", function (c) 
+        return string.format ("%%%02X", string.byte(c))
+    end)
+    url = string.gsub(url, " ", "+")
+    return url
+end
+
 -- here you need use . not :
 local function table_reverse(tbl)
     for i=1, math.floor(#tbl / 2) do
@@ -161,5 +173,6 @@ _M.implode = implode
 _M.unique = unique
 _M.table_reverse = table_reverse
 _M.table_remove = table_remove
+_M.urlencode = urlencode
 
 return _M
