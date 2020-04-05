@@ -37,15 +37,12 @@ function _M:capture()
 end
 
 
-<<<<<<< HEAD
 function _M:header(key)
 	local headers = ngx.req.get_headers()
 	return headers[key]
 end
 
 
-=======
->>>>>>> eb1d8d54da190821ed9998177897d2bf0d8b7ea1
 function _M:all()
 	return self.params
 end
