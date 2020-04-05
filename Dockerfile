@@ -1,4 +1,4 @@
-FROM openresty/openresty:1.13.6.1-trusty
+FROM openresty/openresty:latest
 
 MAINTAINER junwei he "13571899655@163.com"
 

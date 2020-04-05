@@ -37,11 +37,7 @@ local function split_uri(uri)
             index = index + 1
         end
     end
-<<<<<<< HEAD
     return result
-=======
-    return uris
->>>>>>> eb1d8d54da190821ed9998177897d2bf0d8b7ea1
 end
 
 local function route_match(route_tree, http_uris)
@@ -122,11 +118,7 @@ local function generate_route(root_tree, route_uri, route_info)
     local current_tree = root_tree
     for _, uri in ipairs(sub_uris) do
         local node = current_tree:find_child_with_pattern(uri)
-<<<<<<< HEAD
-        if not node then
-=======
         if node == nil then
->>>>>>> eb1d8d54da190821ed9998177897d2bf0d8b7ea1
             node = trie:new()
             current_tree:append_child(uri, node)
         end
