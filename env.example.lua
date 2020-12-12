@@ -5,7 +5,7 @@ return {
     mysql_config = {
         db_name = "lua_china",
         write = {host="10.31.231.178", port=3306, user="root", password="root"}, -- mysql write database
-        read = {host="10.31.231.178", port=3307, user="root", password="root"}, -- mysql read database
+        read = {host="10.31.231.178", port=3306, user="root", password="root"}, -- mysql read database
     },
 
     redis_host = "10.31.231.178", -- redis host
