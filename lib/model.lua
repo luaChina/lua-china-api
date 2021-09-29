@@ -335,7 +335,7 @@ end
 
 function _M:update(data)
 	-- 拼接需要update的字段
-	local str = nil
+	local str = ''
 	for column,value in pairs(data) do
 		clean_value = transform_value(value)
 		if not str then
