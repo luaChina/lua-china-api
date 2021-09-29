@@ -28,8 +28,11 @@ end
 
 function _M:get_userinfo(access_token)
     local httpc = http.new()
-    local res, err = httpc:request_uri("https://api.github.com/user?access_token=" .. access_token, {
+    local res, err = httpc:request_uri("https://api.github.com/user", {
         ssl_verify=false,
+        headers = {
+            ["Authorization"] = "token " .. access_token
+        }
     })
     if not res then
         return nil, err
