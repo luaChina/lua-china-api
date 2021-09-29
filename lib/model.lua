@@ -336,9 +336,10 @@ end
 function _M:update(data)
 	-- 拼接需要update的字段
 	local str = ''
+	local clean_value
 	for column,value in pairs(data) do
 		clean_value = transform_value(value)
-		if not str then
+		if str == '' then
 			str = column..'='..clean_value
 		else
 			str = str..','..column..'='..clean_value
