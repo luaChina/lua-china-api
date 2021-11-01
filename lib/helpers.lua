@@ -110,7 +110,7 @@ local function set_cookie(key, value, expires)
         domain = config.app_domain,
         httponly = true,
         samesite = 'None',
-        secure = true,
+        secure = 'true',
     }
     if expires ~= nil then
         cookie_payload.expires = ngx.cookie_time(expires)
