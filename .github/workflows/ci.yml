@@ -16,9 +16,6 @@ jobs:
     - name: Change env.lua
       run: sed "s/CLIENT_SECRET = \"\"/CLIENT_SECRET = \"${{secrets.LUA_CHINA_GITHUB_SECRET}}\"/" env.example.lua > env.lua
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-
     - name: Build and push
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
