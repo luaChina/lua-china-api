@@ -13,6 +13,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
+    - name: Change env.lua
+      run: - sed "s/CLIENT_SECRET = \"\"/CLIENT_SECRET = \"${{LUA_CHINA_GITHUB_SECRET}}\"/" env.example.lua > env.lua
+
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
@@ -32,8 +35,17 @@ jobs:
         tags: horan/lua-china-api
   
   deploy:
-    runs-on: ubuntu-latest
-    name: Deploy docker by ssh
-    needs: build
-    steps:
-    - run: ssh root@115.28.82.133 "docker ps"
+    - name: ssh pipelines
+      uses: cross-the-world/ssh-pipeline@master
+      env:
+        WELCOME: "ssh pipeline"
+      with:
+        host: 115.28.82.133
+        user: root
+        pass: ${{ secrets.SSH_PASSWORD }}
+        port: 22
+        connect_timeout: 10s
+        script: |
+          (docker pull horan/lua-china-api:$GITHUB_SHA) && 
+          (docker rm -f lua-china-api || true) &&
+          docker run -p 10.31.231.178:8887:80 --name=lua-china-api -d horan/lua-china-api:$GITHUB_SHA
