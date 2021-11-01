@@ -20,7 +20,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         username: horan
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Docker push
       run: docker push horan/lua-china-api:$GITHUB_SHA
