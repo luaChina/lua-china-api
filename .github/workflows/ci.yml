@@ -26,6 +26,7 @@ jobs:
       run: docker push horan/lua-china-api:$GITHUB_SHA
   
   deploy:
+    runs-on: ubuntu-latest
     name: Deploy docker by ssh
     needs: build
     steps:
