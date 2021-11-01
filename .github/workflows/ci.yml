@@ -20,7 +20,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         username: horan
-        password: 123456
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     
     - name: Build and push
       id: docker_build
