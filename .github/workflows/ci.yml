@@ -32,11 +32,12 @@ jobs:
         push: true
         context: .
         file: ./Dockerfile
-        tags: horan/lua-china-api
+        tags: horan/lua-china-api:$GITHUB_SHA
   
   deploy:
     runs-on: ubuntu-latest
     name: Deploy docker
+    needs: build
     steps:
     - name: ssh pipelines
       uses: cross-the-world/ssh-pipeline@master
