@@ -35,6 +35,9 @@ jobs:
         tags: horan/lua-china-api
   
   deploy:
+    runs-on: ubuntu-latest
+    name: Deploy docker
+    steps:
     - name: ssh pipelines
       uses: cross-the-world/ssh-pipeline@master
       env:
