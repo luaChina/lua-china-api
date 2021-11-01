@@ -27,7 +27,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: horan/lua-china-api:$GITHUB_SHA
+        tags: horan/lua-china-api:${{GITHUB_SHA}}
   
   deploy:
     runs-on: ubuntu-latest
