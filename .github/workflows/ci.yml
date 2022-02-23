@@ -5,6 +5,10 @@ on:
     branches:
     - master
 
+env:
+  TKE_DOCKER_HUB: ccr.ccs.tencentyun.com
+  TKE_IMAGE_URL: ccr.ccs.tencentyun.com/hejunwei/lua-china-api
+
 jobs:
   build:
     runs-on: ubuntu-latest
