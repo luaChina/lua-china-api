@@ -14,8 +14,7 @@ jobs:
       uses: actions/checkout@master
 
     - name: Change env.lua
-      run: sed -e "s/CLIENT_SECRET = \"\"/CLIENT_SECRET = \"${{secrets.LUA_CHINA_GITHUB_SECRET}}\"/" 
-      -e "s/password=\"\"/password=\"${{secrets.MYSQL_PASSWORD}}\"/" env.example.lua > env.lua
+      run: sed -e 's/CLIENT_SECRET = ""/CLIENT_SECRET = "${{secrets.LUA_CHINA_GITHUB_SECRET}}"/' -e 's/password=""/password="${{secrets.MYSQL_PASSWORD}}"/' env.example.lua > env.lua
 
     - name: Export Date Env
       id: CURRENT_DATE
