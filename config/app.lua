@@ -29,6 +29,6 @@ return {
         client_secret = env.github.CLIENT_SECRET,
         redirect_uri = env.github.REDIRECT_URL,
     },
-    notify_service_url = "http://notify-service",
-    storage_service_url = "http://storage-service",
+    notify_service_url = "http://172.16.253.50",
+    storage_service_url = "http://172.16.254.235",
 }
