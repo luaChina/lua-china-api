@@ -20,7 +20,14 @@ end
 
 function _M:authorize(user)
     -- login success
-    auth:authorize(user)
+    local ok, err = auth:authorize(user)
+    if err ~= nil then
+        ngx.log(ngx.ERR, err)
+        return false
+    end
+    if ok == false then
+        return false
+    end
     -- 每次ip定位都会有 IO 消耗，读ip二进制dat文件
     local ip_obj, err = ip_location:new(request:header('x-forwarded-for'))
     local location, err = ip_obj:location()

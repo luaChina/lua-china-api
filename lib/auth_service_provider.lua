@@ -19,11 +19,16 @@ end
 function _M:authorize(user)
     local token = generate_token(user.phone..user.id)
     local ok,err = redis:set(token_name..':'..token, cjson.encode(user), config.session_lifetime*60)
+    if err ~= nil then
+        return false, err
+    end
     if not ok then
-        log('cannot set redis key, error_msg:'..err)
         return false, err
     end
     local ok, err = set_cookie(token_name, token, get_local_time() + config.session_lifetime)
+    if err ~= nil then
+        return false, err
+    end
     if not ok then
         return false, err
     end
