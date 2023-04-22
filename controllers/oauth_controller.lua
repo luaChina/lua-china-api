@@ -94,10 +94,14 @@ function _M:github_login()
         -- 每次都更新用户邮箱，之后增加个人中心的设置之后取消掉这里
         local res = User:where('oauth_id', '=', data.id):update({email = email})
         if res ~= 1 then
-            log('update not work', res)
+            ngx.log(ngx.ERR, 'update user email error ' .. res)
         end
     end
     local ok, err = user_service:authorize(user)
+    if err ~= nil then
+        ngx.log(ngx.ERR, err)
+        return response:json(0x050002)
+    end
     if not ok then
         ngx.log(ngx.ERR, err)
         return response:json(0x050002)
