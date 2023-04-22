@@ -57,7 +57,8 @@ function _M:github_login()
         email, err = github_service:get_emails(access_token)
         if err ~= nil then
             ngx.log(ngx.ERR, err)
-            return response:json(0x050003)
+            email = ""
+            -- email 可以为空，不影响主流程
         end
     end
     local user = User:where('oauth_id', '=', data.id):first()
