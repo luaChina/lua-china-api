@@ -9,6 +9,7 @@ local Comment = require('models.comment')
 local Favor = require('models.favor')
 local Tag = require('models.tag')
 local Auth = require("lib.auth_service_provider")
+local SofPostTranslate = require('models.sof_post_translate')
 
 local _M = {}
 function _M:index()
@@ -101,6 +102,7 @@ function _M:show(id)
 	else
 		post.comments = Comment:where('post_id', '=', id):where('deleted_at', 'is', 'null'):with('user'):get()
 		post.favor_count = Favor:where('post_id', '=', id):count()
+		post.stackoverflow = SofPostTranslate:where('post_id', id):first()
 		Post:where('id', '=', post.id):update({
         		    read_count = post.read_count+1,
         		    updated_at = post.updated_at
