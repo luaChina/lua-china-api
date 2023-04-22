@@ -17,7 +17,7 @@ function _M:count()
 end
 
 function _M:top()
-    return response:json(0, 'top', table_remove(User:orderby('created_at', 'desc'):get(5), {'password', 'phone'}))
+    return response:json(0, 'top', table_remove(User:where('source', '=', 0):orderby('created_at', 'desc'):get(5), {'password', 'phone'}))
 end
 
 function _M:show(id)
