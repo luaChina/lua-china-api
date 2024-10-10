@@ -14,6 +14,6 @@ return {
     github = {
         CLIENT_ID = "6162c14c3b7a50abf8ce",
         CLIENT_SECRET = "",
-        REDIRECT_URL = "https://api.lua-china.com/oauth/github",
+        REDIRECT_URL = "https://lua-china.com/api/oauth/github",
     }
 }

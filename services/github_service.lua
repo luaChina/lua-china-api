@@ -20,7 +20,7 @@ function _M:get_access_token(args)
     end
     local data = cjson.decode(res.body)
     if not data.access_token then
-        log(data)
+        ngx.log(ngx.ERR, res.body)
         return nil, data.error
     end
     return data.access_token
