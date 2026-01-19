@@ -9,11 +9,8 @@ local Comment = require('models.comment')
 local Favor = require('models.favor')
 local Tag = require('models.tag')
 local Auth = require("lib.auth_service_provider")
-<<<<<<< HEAD
 local SofPostTranslate = require('models.sof_post_translate')
-=======
 local http = require('lib.http')
->>>>>>> 8578a95 (feat: 增加文章审核机制)
 
 local _M = {}
 function _M:index()
