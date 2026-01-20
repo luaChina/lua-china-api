@@ -72,7 +72,7 @@ function _M:store()
 			["Content-Type"] = "application/json",
         	["Accept"] = "application/json",
         },
-		ssl_verify = true,
+		ssl_verify = false,
     })
     if not res then
         ngx.log(ngx.ERR, "wechat webhook error: ", err)
@@ -122,12 +122,14 @@ function _M:show(id)
 	local post = Post:where('id', '=', id):where('deleted_at', 'is', 'null'):with('user'):first()
 	if not post then
 		post = nil
+		ngx.log(ngx.ERR, "not found posts: " .. id)
 		return response:json(0x030001)
 	end
 
     local user = Auth:user()
     local is_owner = false
     if user and tostring(user.id) == tostring(post.user_id) then
+		ngx.log(ngx.ERR, "is post owner postId: " .. id .. " ownerId:"+ user.id)
         is_owner = true
     end
     
