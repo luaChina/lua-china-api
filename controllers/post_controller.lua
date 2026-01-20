@@ -58,7 +58,7 @@ function _M:store()
 	local body_params = {
     	msgtype = "text",
     	text = {
-        	content: "新文章发布请查看 id:" .. post.id
+        	content = "新文章发布请查看 id:" .. post.id
     	}
    }
    local jsonencodeBody, err = cjson.encode(body_params)
