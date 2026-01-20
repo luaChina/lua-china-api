@@ -1,5 +1,6 @@
 local Model = require("lib.model")
 local User = require('models.user')
+local Comment = require('models.comment')
 local config = require("config.app")
 
 local Post = Model:new('posts')
