@@ -8,7 +8,7 @@ local _M = {}
 function _M:json(status, message, data, http_status)
 	-- you can modify this response struct as you favor
 	local msg = message
-	local response_status = http_status or ngx.OK
+	local response_status = http_status or ngx.HTTP_OK
 	if msg == nil or msg == '' then
 		local locale = ngx.ctx.locale or conf.locale
 		if error_code[locale] ~= nil then
