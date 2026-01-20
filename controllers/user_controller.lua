@@ -35,7 +35,19 @@ function _M:userinfo()
 end
 
 function _M:posts(user_id)
-    local posts = Post:where('deleted_at', 'is', 'null'):where('status', '=', '1'):where('user_id', '=', user_id):get()
+    local user = auth:user()
+    local is_owner = false
+    if user and tostring(user.id) == tostring(user_id) then
+        is_owner = true
+    end
+
+    local query = Post:where('deleted_at', 'is', 'null'):where('user_id', '=', user_id)
+    
+    if not is_owner then
+        query = query:where('status', '=', 1)
+    end
+    
+    local posts = query:get()
     return response:json(0, 'ok', posts)
 end
 

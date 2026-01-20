@@ -188,10 +188,4 @@ function _M:favor(id)
 	end
 end
 
-function _M:list()
-	local user = Auth:user()
-    local posts = Post:where('deleted_at', 'is', 'null'):where('user_id', '=', user.id):get()
-    return response:json(0, 'ok', posts)
-end
-
 return _M

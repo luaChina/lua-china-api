@@ -28,7 +28,6 @@ route:group({
         middleware = {'authenticate'},
     }, function()
         route:put('/user', 'user_controller', 'update')
-        route:get('/user/posts', 'post_controller', 'list')
         route:get('/posts/drafts', 'post_controller', 'drafts')
         route:get('/posts/{post_id}/edit', 'post_controller', 'edit')
         route:post('/posts/{id}/comments', 'comment_controller', 'create')
