@@ -129,12 +129,12 @@ function _M:show(id)
     local user = Auth:user()
     local is_owner = false
     if user and tostring(user.id) == tostring(post.user_id) then
-		ngx.log(ngx.ERR, "is post owner postId: " .. id .. " ownerId:"+ user.id)
+		ngx.log(ngx.ERR, "is post owner postId: " .. id .. " ownerId:" .. user.id)
         is_owner = true
     end
     
     if not is_owner and tostring(post.status) ~= "1" then
-		ngx.log(ngx.ERR, "not post owner postId: " .. id .. " ownerId:"+ user.id)
+		ngx.log(ngx.ERR, "not post owner postId: " .. id .. " is_owner:" .. is_owner)
         return response:json(0x030001)
     end
 

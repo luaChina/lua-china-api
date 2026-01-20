@@ -675,7 +675,7 @@ curl -X "POST" "http://localhost:8888/login" \
         "created_at":"2018-06-28 06:39:24","updated_at":"2018-07-02 13:51:49",
         "id":2,
         "avatar":"",
-        "phone":"13571899655",
+        "phone":"13571899633",
         "email":""
     }
 }
@@ -772,7 +772,7 @@ curl "http://localhost:8888/userinfo"
         "created_at":"2018-06-28 06:39:24","updated_at":"2018-07-02 13:51:49",
         "id":2,
         "avatar":"",
-        "phone":"13571899655",
+        "phone":"13571899633",
         "email":""
     }
 }
