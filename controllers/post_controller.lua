@@ -77,7 +77,7 @@ function _M:store()
     if not res then
         ngx.log(ngx.ERR, "wechat webhook error: ", err)
     end
-	return response:json(0,'ok', args)
+	return response:json(0,'ok', {id=postId})
 end
 
 function _M:update(id)
