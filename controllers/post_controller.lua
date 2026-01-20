@@ -142,8 +142,7 @@ function _M:show(id)
                 read_count = post.read_count+1,
                 updated_at = post.updated_at
             })
-		return response:json(0, 'ok', post)
-	end
+	return response:json(0, 'ok', post)
 end
 
 function _M:edit(id)
