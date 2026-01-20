@@ -35,7 +35,7 @@ function _M:userinfo()
 end
 
 function _M:posts(user_id)
-    local posts = Post:where('deleted_at', 'is', 'null'):where('user_id', '=', user_id):get()
+    local posts = Post:where('deleted_at', 'is', 'null'):where('status', '=', '1'):where('user_id', '=', user_id):get()
     return response:json(0, 'ok', posts)
 end
 

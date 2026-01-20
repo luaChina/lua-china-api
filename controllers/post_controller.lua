@@ -54,29 +54,29 @@ function _M:store()
     if not postId then
         return response:json(0x000005)
     end
--- 	local httpClient = http.new()
--- 	local body_params = {
---     	msgtype = "text",
---     	text = {
---         	content = "新文章发布请查看 id:" .. postId
---     	}
---    }
---    local jsonencodeBody, err = cjson.encode(body_params)
--- 	if not jsonencodeBody then
--- 		ngx.log(ngx.ERR, "json encode failed: ", err)
--- 	end
--- 	local res, err = httpClient:request_uri("https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=7fd2fda8-7407-4dfd-89b1-ade3b3a777bf", {
---         method = "POST",
---         body = jsonencodeBody,
---         headers = {
--- 			["Content-Type"] = "application/json",
---         	["Accept"] = "application/json",
---         },
--- 		ssl_verify = true,
---     })
---     if not res then
---         ngx.log(ngx.ERR, "wechat webhook error: ", err)
---     end
+	local httpClient = http.new()
+	local body_params = {
+    	msgtype = "text",
+    	text = {
+        	content = "新文章发布请查看 id:" .. postId
+    	}
+   }
+   local jsonencodeBody, err = cjson.encode(body_params)
+	if not jsonencodeBody then
+		ngx.log(ngx.ERR, "json encode failed: ", err)
+	end
+	local res, err = httpClient:request_uri("https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=7fd2fda8-7407-4dfd-89b1-ade3b3a777bf", {
+        method = "POST",
+        body = jsonencodeBody,
+        headers = {
+			["Content-Type"] = "application/json",
+        	["Accept"] = "application/json",
+        },
+		ssl_verify = true,
+    })
+    if not res then
+        ngx.log(ngx.ERR, "wechat webhook error: ", err)
+    end
 	return response:json(0,'ok', args)
 end
 
@@ -186,6 +186,12 @@ function _M:favor(id)
 		end
 		return response:json(0)
 	end
+end
+
+function _M:list()
+	local user = Auth:user()
+    local posts = Post:where('deleted_at', 'is', 'null'):where('user_id', '=', user.id):get()
+    return response:json(0, 'ok', posts)
 end
 
 return _M
