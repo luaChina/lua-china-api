@@ -7,9 +7,10 @@
 
 local application = require("lib.application")
 local http_response = require("lib.response")
+local routes = require("routes")
 
 -- Run our application
-local response = application:run()
+local response = application:run(routes)
 
 -- send response to user
 http_response:send(response)

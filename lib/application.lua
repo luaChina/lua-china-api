@@ -1,6 +1,5 @@
 local http_request = require('lib.request')
 local http_response = require('lib.response')
-local router = require('routes')
 local database = require('lib.database')
 local ngx = ngx
 
@@ -44,7 +43,7 @@ end
 
 
 -- run application kernel
-local function run()
+local function run(router)
     -- get http request infomation
     local request_capture = http_request:capture()
     -- match route, get target controller and action
