@@ -134,6 +134,7 @@ function _M:show(id)
     end
     
     if not is_owner and tostring(post.status) ~= "1" then
+		ngx.log(ngx.ERR, "not post owner postId: " .. id .. " ownerId:"+ user.id)
         return response:json(0x030001)
     end
 
