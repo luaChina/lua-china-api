@@ -123,14 +123,25 @@ function _M:show(id)
 	if not post then
 		post = nil
 		return response:json(0x030001)
-	else
-		post.comments = Comment:where('post_id', '=', id):where('deleted_at', 'is', 'null'):with('user'):get()
-		post.favor_count = Favor:where('post_id', '=', id):count()
-		post.stackoverflow = SofPostTranslate:where('post_id', '=', id):first()
-		Post:where('id', '=', post.id):update({
-        		    read_count = post.read_count+1,
-        		    updated_at = post.updated_at
-        		})
+	end
+
+    local user = Auth:user()
+    local is_owner = false
+    if user and tostring(user.id) == tostring(post.user_id) then
+        is_owner = true
+    end
+    
+    if not is_owner and tostring(post.status) ~= "1" then
+        return response:json(0x030001)
+    end
+
+    post.comments = Comment:where('post_id', '=', id):where('deleted_at', 'is', 'null'):with('user'):get()
+    post.favor_count = Favor:where('post_id', '=', id):count()
+    post.stackoverflow = SofPostTranslate:where('post_id', '=', id):first()
+    Post:where('id', '=', post.id):update({
+                read_count = post.read_count+1,
+                updated_at = post.updated_at
+            })
 		return response:json(0, 'ok', post)
 	end
 end
