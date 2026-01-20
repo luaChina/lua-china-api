@@ -50,15 +50,15 @@ function _M:store()
 		content=args.content,
 		thumbnail='',
     }
-	local post = Post:create(data)
-    if not post then
+	local postId = Post:create(data)
+    if not postId then
         return response:json(0x000005)
     end
 	local httpClient = http.new()
 	local body_params = {
     	msgtype = "text",
     	text = {
-        	content = "新文章发布请查看 id:" .. post.id
+        	content = "新文章发布请查看 id:" .. postId
     	}
    }
    local jsonencodeBody, err = cjson.encode(body_params)
